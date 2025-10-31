@@ -162,68 +162,69 @@ def ajustado(request):
     return render(request, 'estadosfinancieros/ajustado.html')
 
 @login_required
-def general(request):
-    # Inicializamos variables
-    cuentas_debe = {}
-    cuentas_haber = {}
-    capital_debe_gen = 0
-    capital_haber_gen = 0
-
-    # Obtener todos los periodos
-    periodos = Periodo.objects.all()
-    periodo_seleccionado = None
-    valorCapital = 0
-
-    if request.method == 'POST':
-        periodo_id = request.POST.get('periodo')
-        if periodo_id:
-            periodo_seleccionado = get_object_or_404(Periodo, pk=periodo_id)
-
-            # IDs de todas las cuentas a consultar
-            cuentas_ids = [
-                110101, 110102, 110201, 110202, 110203, 1103, 1104, 110401,
-                110402, 110403, 1105, 120101, 120102, 1202, 1203,
-                2101, 2102, 2103, 2104, 2105, 2201, 2202
-            ]
-
-            for cuenta_id in cuentas_ids:
-                cuenta = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=cuenta_id).first()
-                debe, haber = 0, 0
-                if cuenta:
-                    if cuenta.saldo < 0:
-                        haber = -1 * cuenta.saldo
-                    else:
-                        debe = cuenta.saldo
-                cuentas_debe[cuenta_id] = debe
-                cuentas_haber[cuenta_id] = haber
-
-            # Obtener capital si existe
-            capital = Capital.objects.filter(periodo=periodo_seleccionado).first()
-            if capital:
-                valorCapital = capital.valor_capital
-
-            # Calcular totales
-            debe_total = sum(cuentas_debe.values()) + capital_debe_gen
-            haber_total = sum(cuentas_haber.values()) + capital_haber_gen
-
-    else:
-        debe_total = 0
-        haber_total = 0
-
-    # Enviar datos al template
-    contexto = {
-        'periodos': periodos,
-        'cuentas_debe': cuentas_debe,
-        'cuentas_haber': cuentas_haber,
-        'capital_debe_gen': capital_debe_gen,
-        'capital_haber_gen': capital_haber_gen,
-        'haber_total': haber_total,
-        'debe_total': debe_total,
-        'periodo_seleccionado': periodo_seleccionado,
-        'valorCapital': valorCapital,
-    }
-
-    return render(request, 'estadosfinancieros/general.html', contexto)
+def general(request): 
+    cuenta1_debe = 0 
+    cuenta1_haber = 0 
+    cuenta2_debe = 0 
+    cuenta2_haber = 0 
+    cuenta3_debe = 0 
+    cuenta3_haber = 0 
+    cuenta4_debe = 0 
+    cuenta4_haber = 0 
+    cuenta5_debe = 0 
+    cuenta5_haber = 0 
+    cuenta6_debe = 0 
+    cuenta6_haber = 0 
+    cuenta7_debe = 0 
+    cuenta7_haber = 0 
+    cuenta8_debe = 0 
+    cuenta8_haber = 0 
+    cuenta9_debe = 0 
+    cuenta9_haber = 0 
+    cuenta10_debe = 0 
+    cuenta10_haber = 0 
+    cuenta11_debe = 0 
+    cuenta11_haber = 0 
+    cuenta12_debe = 0 
+    cuenta12_haber = 0 
+    cuenta13_debe = 0 
+    cuenta13_haber = 0 
+    cuenta14_debe = 0 
+    cuenta14_haber = 0 
+    cuenta15_debe = 0 
+    cuenta15_haber = 0 
+    cuenta16_debe = 0 
+    cuenta16_haber = 0 
+    cuenta17_debe = 0 
+    cuenta17_haber = 0 
+    cuenta18_debe = 0 
+    cuenta18_haber = 0 
+    cuenta19_debe = 0 
+    cuenta19_haber = 0 
+    cuenta20_debe = 0 
+    cuenta20_haber = 0 
+    cuenta21_debe = 0 
+    cuenta21_haber = 0 
+    cuenta22_debe = 0 
+    cuenta22_haber = 0 
+    cuenta23_debe = 0 
+    cuenta23_haber = 0 
+    cuenta24_debe = 0 
+    cuenta24_haber = 0 
+    debe_total = 0 
+    haber_total = 0 
+    
+    periodos = Periodo.objects.all() 
+    if request.method == 'POST': 
+        periodo_id = request.POST.get('periodo') 
+        if periodo_id: 
+            periodo_seleccionado = get_object_or_404(Periodo, pk=periodo_id) 
+            
+            cuenta1 = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=110101).first() 
+            if cuenta1.saldo < 0: cuenta1_haber = -1 * cuenta1.saldo 
+            else: cuenta1_debe = cuenta1.saldo 
+            
+            cuenta2 = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=110102).first() #esto hace la consulta a la base de datos para obtener el objeto ResumenCuentas correspondiente al período seleccionado y a la cuenta con ID 110102. if cuenta2.saldo < 0: cuenta2_haber = -1 * cuenta2.saldo else: cuenta2_debe = cuenta2.saldo cuenta3 = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=110201).first() if cuenta3.saldo < 0: cuenta3_haber = -1 * cuenta3.saldo else: cuenta3_debe = cuenta3.saldo cuenta4 = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=110202).first() if cuenta4.saldo < 0: cuenta4_haber = -1 * cuenta4.saldo else: cuenta4_debe = cuenta4.saldo cuenta5 = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=110203).first() if cuenta5.saldo < 0: cuenta5_haber = -1 * cuenta5.saldo else: cuenta5_debe = cuenta5.saldo cuenta6 = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=1103).first() if cuenta6.saldo < 0: cuenta6_haber = -1 * cuenta6.saldo else: cuenta6_debe = cuenta6.saldo cuenta7 = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=1104).first() if cuenta7.saldo < 0: cuenta7_haber = -1 * cuenta7.saldo else: cuenta7_debe = cuenta7.saldo cuenta8 = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=110401).first() if cuenta8.saldo < 0: cuenta8_haber = -1 * cuenta8.saldo else: cuenta8_debe = cuenta8.saldo cuenta9 = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=110402).first() if cuenta9.saldo < 0: cuenta9_haber = -1 * cuenta9.saldo else: cuenta9_debe = cuenta9.saldo cuenta10 = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=110403).first() if cuenta10.saldo < 0: cuenta10_haber = -1 * cuenta10.saldo else: cuenta10_debe = cuenta10.saldo cuenta11 = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=1105).first() if cuenta11.saldo < 0: cuenta11_haber = -1 * cuenta11.saldo else: cuenta11_debe = cuenta11.saldo cuenta12 = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=120101).first() if cuenta12.saldo < 0: cuenta12_haber = -1 * cuenta12.saldo else: cuenta12_debe = cuenta12.saldo cuenta13 = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=120102).first() if cuenta13.saldo < 0: cuenta13_haber = -1 * cuenta13.saldo else: cuenta13_debe = cuenta13.saldo cuenta14 = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=1202).first() if cuenta14.saldo < 0: cuenta14_haber = -1 * cuenta14.saldo else: cuenta14_debe = cuenta14.saldo cuenta15 = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=1203).first() if cuenta15.saldo < 0: cuenta15_haber = -1 * cuenta15.saldo else: cuenta15_debe = cuenta15.saldo cuenta16 = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=2101).first() if cuenta16.saldo < 0: cuenta16_debe = -1 * cuenta16.saldo else: cuenta16_haber = cuenta16.saldo cuenta17 = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=2102).first() if cuenta17.saldo < 0: cuenta17_debe = -1 * cuenta17.saldo else: cuenta17_haber = cuenta17.saldo cuenta18 = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=2103).first() if cuenta18.saldo < 0: cuenta18_debe = -1 * cuenta18.saldo else: cuenta18_haber = cuenta18.saldo cuenta19 = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=2104).first() if cuenta19.saldo < 0: cuenta19_debe = -1 * cuenta19.saldo else: cuenta19_haber = cuenta19.saldo cuenta20 = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=2105).first() if cuenta20.saldo < 0: cuenta20_debe = -1 * cuenta20.saldo else: cuenta20_haber = cuenta20.saldo cuenta21 = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=2201).first() if cuenta21.saldo < 0: cuenta21_debe = -1 * cuenta21.saldo else: cuenta21_haber = cuenta21.saldo cuenta22 = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=2202).first() if cuenta22.saldo < 0: cuenta22_debe = -1 * cuenta22.saldo else: cuenta22_haber = cuenta22.saldo cuenta23 = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=2201).first() if cuenta23.saldo < 0: cuenta23_debe = -1 * cuenta23.saldo else: cuenta23_haber = cuenta23.saldo cuenta24 = ResumenCuentas.objects.filter(periodo=periodo_seleccionado, cuenta_id=2202).first() if cuenta24.saldo < 0: cuenta24_debe = -1 * cuenta24.saldo else: cuenta24_haber = cuenta24.saldo debe_total = (cuenta1_debe + cuenta2_debe + cuenta3_debe + cuenta4_debe + cuenta5_debe + cuenta6_debe + cuenta7_debe + cuenta8_debe + cuenta9_debe + cuenta10_debe + cuenta11_debe + cuenta12_debe + cuenta13_debe + cuenta14_debe + cuenta15_debe + cuenta16_debe + cuenta17_debe + cuenta18_debe + cuenta19_debe + cuenta20_debe + cuenta21_debe + cuenta22_debe + cuenta23_debe + cuenta24_debe + capital_debe_gen) haber_total = (cuenta1_haber + cuenta2_haber + cuenta3_haber + cuenta4_haber + cuenta5_haber + cuenta6_haber + cuenta7_haber + cuenta8_haber + cuenta9_haber + cuenta10_haber + cuenta11_haber + cuenta12_haber + cuenta13_haber + cuenta14_haber + cuenta15_haber + cuenta16_haber + cuenta17_haber + cuenta18_haber + cuenta19_haber + cuenta20_haber + cuenta21_haber + cuenta22_haber + cuenta23_haber + cuenta24_haber + capital_haber_gen) if periodo_seleccionado: capitales = Capital.objects.filter(periodo=periodo_seleccionado).first() if capitales: valorCapital = capitales.valor_capital return render(request, 'estadosfinancieros/general.html', { 'periodos':periodos, 'cuenta1_debe': cuenta1_debe, 'cuenta1_haber': cuenta1_haber, 'cuenta2_debe': cuenta2_debe, 'cuenta2_haber': cuenta2_haber, 'cuenta3_debe': cuenta3_debe, 'cuenta3_haber': cuenta3_haber, 'cuenta4_debe': cuenta4_debe, 'cuenta4_haber': cuenta4_haber, 'cuenta5_debe': cuenta5_debe, 'cuenta5_haber': cuenta5_haber, 'cuenta6_debe': cuenta6_debe, 'cuenta6_haber': cuenta6_haber, 'cuenta7_debe': cuenta7_debe, 'cuenta7_haber': cuenta7_haber, 'cuenta8_debe': cuenta8_debe, 'cuenta8_haber': cuenta8_haber, 'cuenta9_debe': cuenta9_debe, 'cuenta9_haber': cuenta9_haber, 'cuenta10_debe': cuenta10_debe, 'cuenta10_haber': cuenta10_haber, 'cuenta11_debe': cuenta11_debe, 'cuenta11_haber': cuenta11_haber, 'cuenta12_debe': cuenta12_debe, 'cuenta12_haber': cuenta12_haber, 'cuenta13_debe': cuenta13_debe, 'cuenta13_haber': cuenta13_haber, 'cuenta14_debe': cuenta14_debe, 'cuenta14_haber': cuenta14_haber, 'cuenta15_debe': cuenta15_debe, 'cuenta15_haber': cuenta15_haber, 'cuenta16_debe': cuenta16_debe, 'cuenta16_haber': cuenta16_haber, 'cuenta17_debe': cuenta17_debe, 'cuenta17_haber': cuenta17_haber, 'cuenta18_debe': cuenta18_debe, 'cuenta18_haber': cuenta18_haber, 'cuenta19_debe': cuenta19_debe, 'cuenta19_haber': cuenta19_haber, 'cuenta20_debe': cuenta20_debe, 'cuenta20_haber': cuenta20_haber, 'cuenta21_debe': cuenta21_debe, 'cuenta21_haber': cuenta21_haber, 'cuenta22_debe': cuenta22_debe, 'cuenta22_haber': cuenta22_haber, 'cuenta23_debe': cuenta23_debe, 'cuenta23_haber': cuenta23_haber, 'cuenta24_debe': cuenta24_debe, 'cuenta24_haber': cuenta24_haber, 'capital_debe_gen':capital_debe_gen, 'capital_haber_gen':capital_haber_gen, 'haber_total':haber_total, 'debe_total':debe_total })
 
 @login_required
 def resultados(request, periodo_id=None):
