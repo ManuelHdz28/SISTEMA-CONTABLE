@@ -152,7 +152,7 @@ def comprobacion(request, periodo_id=None):
             'periodos': periodos,
             'periodo_seleccionado': periodo_seleccionado,
         })
-
+    return render(request, 'estadosfinancieros/general.html', {'periodos': periodos})
 @login_required
 def ajustes(request):
     return render(request, 'estadosfinancieros/ajustes.html')
