@@ -112,14 +112,15 @@ WSGI_APPLICATION = 'CodeSoft.wsgi.application'
     #}
 #}
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bydqy34t7i8jaff3gaku',
-        'USER': 'u9fefhjn3fzslbdfmllj',
-        'PASSWORD': '2yymTu4Tjg2qYnuDRz1oyKbFbTtSVe',
-        'HOST': 'bydqy34t7i8jaff3gaku-postgresql.services.clever-cloud.com',
-        'PORT': '50013',
+        'NAME': os.environ.get('PGDATABASE'),
+        'USER': os.environ.get('PGUSER'),
+        'PASSWORD': os.environ.get('PGPASSWORD'),
+        'HOST': os.environ.get('PGHOST'),
+        'PORT': os.environ.get('PGPORT', '5432'),
     }
 }
 
