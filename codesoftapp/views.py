@@ -15,12 +15,7 @@ capital_haber_gen = 0
 # Vista para la página de inicio
 @login_required
 def inicio(request):
-    try:
-        periodo_a_eliminar = Periodo.objects.get(nombre='2021')
-        periodo_a_eliminar.delete()
-        print(f"El período '2021' ha sido eliminado correctamente.")
-    except Periodo.DoesNotExist:
-        print(f"No se encontró un período con el nombre '2021'.")
+    
     return render(request, 'index.html')
 
 # Vista para cerrar sesión
